@@ -248,7 +248,7 @@ function App() {
         setWrapper(false)
       }, 1500);
     }
-  }, [homeScore, setHomeScore, awayScore, setAwayScore])
+  }, [homeScore, setHomeScore, awayScore, setAwayScore, endSound])
 
 
   const ppSelector = (e) =>{
