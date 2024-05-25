@@ -139,12 +139,12 @@ function App() {
   const [wrapper,setWrapper] = useState(false)
   const [game,setGame] = useState(false)
   const [selectionDisabled,setSelectionDisabled] = useState(false)
+  const [error,setError] = useState(false)
   // Selection Part
   const [shownPP,setShownPP] = useState(angel)
   const [awayPP,setAwayPP] = useState()
-  const [homeName,setHomeName] = useState()
+  const [homeName,setHomeName] = useState('')
   const [awayName,setAwayName] = useState()
-  const [btnDisabled,setBtnDisabled] = useState(true)
   // Sounds
   const [endSound] = useSound(end)
   const [startSound] = useSound(start)
@@ -256,23 +256,23 @@ function App() {
     console.log(shownPP)
   }
   const homeNameValue = (e) =>{
-    let warning = document.getElementById('warning')
     setHomeName(e.target.value)
-    if(e.target.value === ''){
-      setBtnDisabled(true)
-      warning.style.display = 'flex'
-    }else{
-      setBtnDisabled(false)
-      warning.style.display = 'none'
-    }
+
   }
   function gameStarter(){
-    setGame(true)
-    let randomLogoIndex = Math.floor(Math.random() * logos.length)
-    let randomNameIndex = Math.floor(Math.random() * names.length)
-    setAwayPP(logos[randomLogoIndex].logo)
-    setAwayName(names[randomNameIndex].name)
-    startSound()
+     
+    if(homeName === ''){
+      setError(true)
+      console.log('asdasd')
+    }else{
+      setError(false)
+      setGame(true)
+      let randomLogoIndex = Math.floor(Math.random() * logos.length)
+      let randomNameIndex = Math.floor(Math.random() * names.length)
+      setAwayPP(logos[randomLogoIndex].logo)
+      setAwayName(names[randomNameIndex].name)
+      startSound()
+    }
   }
   
   
@@ -284,7 +284,7 @@ function App() {
           <PpSelection logo={logo.logo} click={(e) => ppSelector(e)} />
         ))}
            </div>
-        <SelectionShown logo={shownPP} click={gameStarter} homeNameValue={(e) => homeNameValue(e)} btnDisabled={btnDisabled} />
+        <SelectionShown error={error} logo={shownPP} click={gameStarter} homeNameValue={(e) => homeNameValue(e)} />
         </div>}
       {game && <div>
       <NickBoard homePP={shownPP} awayPP={awayPP} homeName={homeName} awayName={awayName} />

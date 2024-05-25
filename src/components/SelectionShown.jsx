@@ -1,6 +1,6 @@
 import React from "react";
 
-function SelectionShown({logo, click, homeNameValue, btnDisabled}){
+function SelectionShown({logo, click, homeNameValue,error}){
     return(
         <div className="selectionShownWrapper">
             <div className="shownPP">
@@ -8,9 +8,9 @@ function SelectionShown({logo, click, homeNameValue, btnDisabled}){
             </div>
             <div className="shownName">
                 <input onChange={homeNameValue} type="text" />
-                <p id="warning">*You cannot leave that place empty!</p>
+                {error && <p id="warning">*You cannot leave that place empty!</p>}
             </div>
-            <button disabled={btnDisabled} onClick={click}><span>Start!</span></button>
+            <button onClick={click}><span>Start!</span></button>
         </div>
     )
 }
