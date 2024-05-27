@@ -7,7 +7,7 @@ function SelectionShown({logo, click, homeNameValue,error}){
                 <img src={logo} alt="" />
             </div>
             <div className="shownName">
-                <input onChange={homeNameValue} type="text" />
+                <input onChange={homeNameValue} placeholder="Nickname" type="text" />
                 {error && <p id="warning">*You cannot leave that place empty!</p>}
             </div>
             <button onClick={click}><span>Start!</span></button>

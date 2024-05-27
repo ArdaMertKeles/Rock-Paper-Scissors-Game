@@ -140,6 +140,8 @@ function App() {
   const [game,setGame] = useState(false)
   const [selectionDisabled,setSelectionDisabled] = useState(false)
   const [error,setError] = useState(false)
+  const [nextBtnDisabled,setNextBtnDisabled] = useState(true)
+  const [resetBtnDisabled,setResetBtnDisabled] = useState(true)
   // Selection Part
   const [shownPP,setShownPP] = useState(angel)
   const [awayPP,setAwayPP] = useState()
@@ -236,14 +238,18 @@ function App() {
       setWrapper(true)
       setAwayShake('awayFallingHand')
       endSound()
+      setSelectionDisabled(true)
+      setNextBtnDisabled(false)
       setTimeout(() => {
         setWrapper(false)
         setAwayShake('awayHand')
       }, 1500);
     }else if(awayScore === 3){
       setWrapper(true)
+      setSelectionDisabled(true)
       setShake('fallingHand')
       endSound()
+      setResetBtnDisabled(false)
       setTimeout(() => {
         setWrapper(false)
       }, 1500);
@@ -271,18 +277,33 @@ function App() {
       let randomNameIndex = Math.floor(Math.random() * names.length)
       setAwayPP(logos[randomLogoIndex].logo)
       setAwayName(names[randomNameIndex].name)
-      startSound()
     }
   }
-  
+  function reset(){
+    window.location.reload()
+  }
+  function next(){
+    let randomLogoIndex = Math.floor(Math.random() * logos.length)
+    let randomNameIndex = Math.floor(Math.random() * names.length)
+    setAwayPP(logos[randomLogoIndex].logo)
+    setAwayName(names[randomNameIndex].name)
+    setHomeScore(0)
+    setAwayScore(0)
+    setSelectionDisabled(false)
+    setNextBtnDisabled(true)
+  }
   
   return (
     <div className={!wrapper ? 'wrapper' : 'shakeWrapper'}>
       {!game && <div className="startWrapper">
         <div className="logoSelectionWrapper">
-        {logos.map((logo) =>(
+          <h2>Select Your Logo!</h2>
+          <div className="logoSelection"> 
+          {logos.map((logo) =>(
           <PpSelection logo={logo.logo} click={(e) => ppSelector(e)} />
         ))}
+          </div>
+        
            </div>
         <SelectionShown error={error} logo={shownPP} click={gameStarter} homeNameValue={(e) => homeNameValue(e)} />
         </div>}
@@ -292,7 +313,8 @@ function App() {
       <Hands homeHand={selection} awayHand={awaySelection} shake={shake} setShake={setShake}
       awayShake={awayShake} home={homeScore} away={awayScore} />
       <Selection selectionDisabled={selectionDisabled} rock={rock} paper={paper} scissors={scissors} play={play}
-       rockSelection={rockSelection} paperSelection={paperSelection} scissorsSelection={scissorsSelection} />
+       rockSelection={rockSelection} paperSelection={paperSelection} scissorsSelection={scissorsSelection}
+        reset={reset} resetBtnDisabled={resetBtnDisabled} next={next} nextBtnDisabled={nextBtnDisabled} />
       </div>}
     </div>
   );
