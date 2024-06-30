@@ -33,10 +33,6 @@ import end from './sounds/retro-falling-down.mp3'
 import countDown from './sounds/countdown.mp3'
 import start from './sounds/game-start.mp3'
 
-// kaybeden tarafın eli ekrandan düşecek RESULT GLOW ŞEKİLDE DEĞİŞECEK
-// SES EFEKTLERİ EKLE
-// IF input value boş işse submit engellenecek!
-
 function App() {
 
   const logos = [
@@ -278,6 +274,7 @@ function App() {
       setAwayPP(logos[randomLogoIndex].logo)
       setAwayName(names[randomNameIndex].name)
     }
+    startSound()
   }
   function reset(){
     window.location.reload()
