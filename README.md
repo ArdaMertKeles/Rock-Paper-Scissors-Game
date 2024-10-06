@@ -1,10 +1,8 @@
-# Getting Started with Create React App
+# This is rock paper scissors game made with React.js [Live Server](https://minerpsgame.netlify.app/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Ekran görüntüsü 2024-10-06 181536](https://github.com/user-attachments/assets/9c186ba9-465e-4baa-a2ce-0117c0fc1c69)
 
-## Available Scripts
-
-In the project directory, you can run:
+![Ekran görüntüsü 2024-10-06 181809](https://github.com/user-attachments/assets/885671be-1f36-4da6-ae0c-224018a836f9)
 
 ### `npm start`
 
@@ -13,11 +11,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
